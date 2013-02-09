@@ -31,14 +31,15 @@
             <i>
               Hover over the map to see the effect of tax delinquent properties on the neighborhood level.
               Search for your property in the box below to see the impact of tax delinquent properties on your own property.
-              Note: If your property is not found, it was modeled--but it may still be impacted.
+              Note: If your property is not found, it couldn't be included in the analysis--but it may still be impacted.
             </i>
           </p>
-          <form>
-            <p>
-              <label>Search for a property:<input id="lookup" type="text"></input></label>
-            </p>
-          </form>
+          <p>
+            <label>Search for a property:<input id="lookup" type="text"></input></label>
+          </p>
+          <div id="results">
+
+          </div>
         </div>
       </section>
 
@@ -61,13 +62,35 @@
       <script type="text/javascript" src="js/jquery-ui-1.10.0.custom.min.js"></script>
       <script type="text/javascript">
         $(document).ready(function(){
+          app.results = [];
+
           $("#lookup").autocomplete({
             source: function(request, response){ 
               now.search(request, 10, function(err, results) {
-                response(results);
+                var props = [];
+                app.results = results;
+                
+                for(var i=0; i<results.length; i++) {
+                  props.push(results[i].address);
+                }
+
+                response(props);
               });
             },
             minLength: 6
+          });
+
+          $("#lookup").on("autocompleteselect", function(event, ui) {
+            for(var i=0; i<app.results.length; i++) {
+              if(app.results[i].address === $('#lookup').val()) {
+                var data = app.results[i],
+                    html = 'There are approximately <strong>' + data.count + '</strong> tax delinquent properties' +
+                           ' nearby <strong>' + data.address + '</strong>,' + 
+                           ' which diminish the value of the property by <strong>' + data.dimValue + '%</strong>.';
+
+                $("#results").html(html);
+              }
+            }
           });
         });
       </script>

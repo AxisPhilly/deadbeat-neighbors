@@ -1,3 +1,7 @@
+body p {
+  font-size: 16px;
+}
+
 path {
   fill: #ccc;
   stroke: #fff;
@@ -21,6 +25,11 @@ path:hover {
 
 #dim-value {
   padding: 5px;
+}
+
+#results {
+  color: #555;
+  font-size: 18px;
 }
 
 .info {
