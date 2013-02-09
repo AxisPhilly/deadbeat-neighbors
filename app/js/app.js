@@ -66,12 +66,64 @@ app.hideTooltip = function() {
   $(document).unbind('mousemove');
 };
 
+app.legendItems = [
+  {
+    className: "step-zero",
+    range: "$0"
+  },
+  {
+    className: "step-one",
+    range: "< $1,000,000 "
+  },
+  {
+    className: "step-two",
+    range: "< $10,000,000"
+  },
+  {
+    className: "step-three",
+    range: "< $100,000,000"
+  },
+  {
+    className: "step-four",
+    range: ""
+  }
+];
+
 //http://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-money-in-javascript
 Number.prototype.formatMoney = function(){
   var c=2, d='.', t=',';
   var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "," : d, t = t == undefined ? "." : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 };
+
+// Legend
+app.legend = d3.select("#legend").append("svg")
+    .attr("height", 50)
+    .attr("width", 400)
+    .attr("viewBox", "0 0 400 50")
+    .attr("preserveAspectRatio", "xMidYMid")
+  .selectAll("g")
+    .data(app.legendItems)
+  .enter().append("g");
+
+app.legend.append("rect")
+    .attr("height", 20)
+    .attr("width", 80)
+    .attr("x", function(d, i) { return i * 80; })
+    .attr("class", function(d) { return d.className; });
+
+app.legend.append("text")
+    .text(function(d) { return d.range; })
+    .attr("x", function(d, i) { return i * 30; })
+    .attr("y", 35)
+    .call(function() {
+
+      if(window.innerWidth < 400) {
+        d3.select("#legend svg").
+          attr("width", window.innerWidth - 20);
+      }
+    });
+
 
 d3.json("data/summary.json", function(error, data){
 

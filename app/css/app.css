@@ -23,6 +23,10 @@ path:hover {
   padding: 5px;
 }
 
+.info {
+  margin-top: 20px;
+}
+
 .hover {
   position: absolute;
   width: 250px;
