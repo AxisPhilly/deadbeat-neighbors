@@ -49,14 +49,14 @@ var app = {};
           $('<div/>', {
             'class': 'hover',
             html: contents
-          }).appendTo('body').show();
+          }).appendTo('#map').show();
         }
 
-      var offset = $('body').offset();
+      var offset = $('#map').offset();
 
       $(document).mousemove(function(e){
-        var posX = e.pageX - 120;
-            posY = e.pageY - 90;
+        var posX = e.pageX - 290;
+            posY = e.pageY - 180;
 
         $('.hover').css({ left: posX, top: posY });
       });
