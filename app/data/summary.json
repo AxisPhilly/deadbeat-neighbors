@@ -1,0 +1,590 @@
+[
+  {
+    "hood": "Bridesburg",
+    "dimValue": 27214033
+  },
+  {
+    "hood": "Bustleton",
+    "dimValue": 1732317
+  },
+  {
+    "hood": "Cedarbrook",
+    "dimValue": 90584958
+  },
+  {
+    "hood": "Chestnut Hill",
+    "dimValue": 1740542
+  },
+  {
+    "hood": "East Falls",
+    "dimValue": 17791348
+  },
+  {
+    "hood": "East Mount Airy",
+    "dimValue": 107659440
+  },
+  {
+    "hood": "Grays Ferry",
+    "dimValue": 113508972
+  },
+  {
+    "hood": "Olney",
+    "dimValue": 129717573
+  },
+  {
+    "hood": "Pennypack Park",
+    "dimValue": 0
+  },
+  {
+    "hood": "Somerton",
+    "dimValue": 1298826
+  },
+  {
+    "hood": "West Mount Airy",
+    "dimValue": 44646648
+  },
+  {
+    "hood": "West Oak Lane",
+    "dimValue": 381806268
+  },
+  {
+    "hood": "Wissahickon Park",
+    "dimValue": 0
+  },
+  {
+    "hood": "Riverfront",
+    "dimValue": 1093972
+  },
+  {
+    "hood": "Mechanicsville",
+    "dimValue": 0
+  },
+  {
+    "hood": "Parkwood Manor",
+    "dimValue": 10176642
+  },
+  {
+    "hood": "Modena",
+    "dimValue": 7692562
+  },
+  {
+    "hood": "Morrell Park",
+    "dimValue": 9735439
+  },
+  {
+    "hood": "Millbrook",
+    "dimValue": 1346531
+  },
+  {
+    "hood": "Crestmont Farms",
+    "dimValue": 0
+  },
+  {
+    "hood": "Academy Gardens",
+    "dimValue": 355607
+  },
+  {
+    "hood": "Pennypack",
+    "dimValue": 5740764
+  },
+  {
+    "hood": "Aston-Woodbridge",
+    "dimValue": 929299
+  },
+  {
+    "hood": "Pennypack Woods",
+    "dimValue": 1259427
+  },
+  {
+    "hood": "Winchester Park",
+    "dimValue": 74926
+  },
+  {
+    "hood": "Torresdale",
+    "dimValue": 3951019
+  },
+  {
+    "hood": "Lexington Park",
+    "dimValue": 237560
+  },
+  {
+    "hood": "Rhawnhurst",
+    "dimValue": 5905772
+  },
+  {
+    "hood": "Fox Chase",
+    "dimValue": 2747742
+  },
+  {
+    "hood": "Burholme",
+    "dimValue": 321488
+  },
+  {
+    "hood": "Oxford Circle",
+    "dimValue": 71060646
+  },
+  {
+    "hood": "Summerdale",
+    "dimValue": 22402882
+  },
+  {
+    "hood": "Crescentville",
+    "dimValue": 105909
+  },
+  {
+    "hood": "Lawndale",
+    "dimValue": 41587665
+  },
+  {
+    "hood": "Northwood",
+    "dimValue": 18649273
+  },
+  {
+    "hood": "Holmesburg",
+    "dimValue": 52115843
+  },
+  {
+    "hood": "Frankford",
+    "dimValue": 79269705
+  },
+  {
+    "hood": "Mayfair",
+    "dimValue": 66634692
+  },
+  {
+    "hood": "Tacony",
+    "dimValue": 53308176
+  },
+  {
+    "hood": "Wissinoming",
+    "dimValue": 70711649
+  },
+  {
+    "hood": "Andorra",
+    "dimValue": 48822
+  },
+  {
+    "hood": "Upper Roxborough",
+    "dimValue": 1816713
+  },
+  {
+    "hood": "Dearnley Park",
+    "dimValue": 206426
+  },
+  {
+    "hood": "Roxborough Park",
+    "dimValue": 5044
+  },
+  {
+    "hood": "Germany Hill",
+    "dimValue": 2823173
+  },
+  {
+    "hood": "Wissahickon Hills",
+    "dimValue": 118749
+  },
+  {
+    "hood": "Roxborough",
+    "dimValue": 30798201
+  },
+  {
+    "hood": "Manayunk",
+    "dimValue": 52482875
+  },
+  {
+    "hood": "Wissahickon",
+    "dimValue": 16959063
+  },
+  {
+    "hood": "East Germantown",
+    "dimValue": 63297480
+  },
+  {
+    "hood": "Germantown - Morton",
+    "dimValue": 42336830
+  },
+  {
+    "hood": "West Central Germantown",
+    "dimValue": 17914136
+  },
+  {
+    "hood": "Germantown - Penn Knox",
+    "dimValue": 3093793
+  },
+  {
+    "hood": "Germantown - Westside",
+    "dimValue": 16050297
+  },
+  {
+    "hood": "Southwest Germantown",
+    "dimValue": 48860346
+  },
+  {
+    "hood": "Ogontz",
+    "dimValue": 126723265
+  },
+  {
+    "hood": "Wister",
+    "dimValue": 21446079
+  },
+  {
+    "hood": "Nicetown",
+    "dimValue": 23662104
+  },
+  {
+    "hood": "Tioga",
+    "dimValue": 61364471
+  },
+  {
+    "hood": "Allegheny West",
+    "dimValue": 148564864
+  },
+  {
+    "hood": "Glenwood",
+    "dimValue": 33436436
+  },
+  {
+    "hood": "Fern Rock",
+    "dimValue": 23905941
+  },
+  {
+    "hood": "East Oak Lane",
+    "dimValue": 16652450
+  },
+  {
+    "hood": "Melrose Park Gardens",
+    "dimValue": 10165299
+  },
+  {
+    "hood": "Franklinville",
+    "dimValue": 39185229
+  },
+  {
+    "hood": "Feltonville",
+    "dimValue": 60200687
+  },
+  {
+    "hood": "Richmond",
+    "dimValue": 195026554
+  },
+  {
+    "hood": "Hunting Park",
+    "dimValue": 110082007
+  },
+  {
+    "hood": "Juniata Park",
+    "dimValue": 61773860
+  },
+  {
+    "hood": "Harrowgate",
+    "dimValue": 57632389
+  },
+  {
+    "hood": "Fairhill",
+    "dimValue": 132473687
+  },
+  {
+    "hood": "Upper Kensington",
+    "dimValue": 246735875
+  },
+  {
+    "hood": "McGuire",
+    "dimValue": 158411335
+  },
+  {
+    "hood": "Stanton",
+    "dimValue": 174629829
+  },
+  {
+    "hood": "Brewerytown",
+    "dimValue": 180796966
+  },
+  {
+    "hood": "Sharswood",
+    "dimValue": 58426937
+  },
+  {
+    "hood": "North Central",
+    "dimValue": 92867029
+  },
+  {
+    "hood": "Yorktown",
+    "dimValue": 13447296
+  },
+  {
+    "hood": "Ludlow",
+    "dimValue": 10480415
+  },
+  {
+    "hood": "Hartranft",
+    "dimValue": 170664243
+  },
+  {
+    "hood": "West Kensington",
+    "dimValue": 93765388
+  },
+  {
+    "hood": "Fishtown",
+    "dimValue": 298886272
+  },
+  {
+    "hood": "Old Kensington",
+    "dimValue": 36493740
+  },
+  {
+    "hood": "Lower Kensington",
+    "dimValue": 43196000
+  },
+  {
+    "hood": "Northern Liberties",
+    "dimValue": 29703953
+  },
+  {
+    "hood": "Logan",
+    "dimValue": 117713365
+  },
+  {
+    "hood": "Society HIll",
+    "dimValue": 50425839
+  },
+  {
+    "hood": "Old City",
+    "dimValue": 14418560
+  },
+  {
+    "hood": "Chinatown",
+    "dimValue": 1144376
+  },
+  {
+    "hood": "Center City East",
+    "dimValue": 252624
+  },
+  {
+    "hood": "Washington Square",
+    "dimValue": 55459044
+  },
+  {
+    "hood": "Fairmount",
+    "dimValue": 76049254
+  },
+  {
+    "hood": "Francisville",
+    "dimValue": 64781372
+  },
+  {
+    "hood": "Spring Garden",
+    "dimValue": 36019736
+  },
+  {
+    "hood": "Logan Circle",
+    "dimValue": 11877453
+  },
+  {
+    "hood": "Rittenhouse",
+    "dimValue": 84876699
+  },
+  {
+    "hood": "Schuylkill",
+    "dimValue": 9233379
+  },
+  {
+    "hood": "Graduate Hospital",
+    "dimValue": 232083833
+  },
+  {
+    "hood": "Point Breeze",
+    "dimValue": 390925738
+  },
+  {
+    "hood": "Hawthorne",
+    "dimValue": 82688701
+  },
+  {
+    "hood": "Bella Vista",
+    "dimValue": 68272535
+  },
+  {
+    "hood": "Queen Village",
+    "dimValue": 108415047
+  },
+  {
+    "hood": "Southwark East",
+    "dimValue": 100040859
+  },
+  {
+    "hood": "Wharton",
+    "dimValue": 167501585
+  },
+  {
+    "hood": "Greenwich",
+    "dimValue": 65592601
+  },
+  {
+    "hood": "Pennsport",
+    "dimValue": 78440973
+  },
+  {
+    "hood": "South Philadelphia",
+    "dimValue": 164433443
+  },
+  {
+    "hood": "Whitman",
+    "dimValue": 113902816
+  },
+  {
+    "hood": "Girard Estates",
+    "dimValue": 202973826
+  },
+  {
+    "hood": "Passyunk",
+    "dimValue": 86969
+  },
+  {
+    "hood": "Eastwick",
+    "dimValue": 10805522
+  },
+  {
+    "hood": "Clearview",
+    "dimValue": 11778758
+  },
+  {
+    "hood": "Penrose",
+    "dimValue": 14032015
+  },
+  {
+    "hood": "Elmwood",
+    "dimValue": 72122483
+  },
+  {
+    "hood": "Paschall",
+    "dimValue": 51223726
+  },
+  {
+    "hood": "Angora",
+    "dimValue": 4806575
+  },
+  {
+    "hood": "Kingsessing",
+    "dimValue": 169555682
+  },
+  {
+    "hood": "Cobbs Creek",
+    "dimValue": 553686422
+  },
+  {
+    "hood": "Walnut Hill",
+    "dimValue": 23880274
+  },
+  {
+    "hood": "Cedar Park",
+    "dimValue": 34393347
+  },
+  {
+    "hood": "Garden Court",
+    "dimValue": 8946368
+  },
+  {
+    "hood": "Woodland Terrace",
+    "dimValue": 47455
+  },
+  {
+    "hood": "Southwest Cedar Park",
+    "dimValue": 18867985
+  },
+  {
+    "hood": "Spruce Hill",
+    "dimValue": 4541221
+  },
+  {
+    "hood": "Southwest Schuylkill",
+    "dimValue": 79609607
+  },
+  {
+    "hood": "University City",
+    "dimValue": 3834245
+  },
+  {
+    "hood": "Powelton",
+    "dimValue": 4229714
+  },
+  {
+    "hood": "West Powelton",
+    "dimValue": 20678989
+  },
+  {
+    "hood": "East Parkside",
+    "dimValue": 17936290
+  },
+  {
+    "hood": "Belmont",
+    "dimValue": 18299245
+  },
+  {
+    "hood": "Haverford North",
+    "dimValue": 7194337
+  },
+  {
+    "hood": "West Parkside",
+    "dimValue": 1726204
+  },
+  {
+    "hood": "Mill Creek",
+    "dimValue": 34147115
+  },
+  {
+    "hood": "Dunlap",
+    "dimValue": 16664441
+  },
+  {
+    "hood": "Mantua",
+    "dimValue": 61362300
+  },
+  {
+    "hood": "Haddington",
+    "dimValue": 143043973
+  },
+  {
+    "hood": "Carroll Park",
+    "dimValue": 116645357
+  },
+  {
+    "hood": "Overbrook",
+    "dimValue": 137870026
+  },
+  {
+    "hood": "Wynnefield Heights",
+    "dimValue": 3095767
+  },
+  {
+    "hood": "Chinatown North",
+    "dimValue": 1232900
+  },
+  {
+    "hood": "West Poplar",
+    "dimValue": 21602794
+  },
+  {
+    "hood": "East Poplar",
+    "dimValue": 2438475
+  },
+  {
+    "hood": "Strawberry Mansion",
+    "dimValue": 949291199
+  },
+  {
+    "hood": "East Park",
+    "dimValue": 287430
+  },
+  {
+    "hood": "Wynnefield",
+    "dimValue": 95373266
+  },
+  {
+    "hood": "Normandy Village",
+    "dimValue": 0
+  },
+  {
+    "hood": "Packer Park",
+    "dimValue": 31843485
+  }
+]
