@@ -35,7 +35,7 @@
             </i>
           </p>
           <p>
-            <label>Search for a property:<input id="lookup" type="text"></input></label>
+            <label>Search for a property (ex: 1000 S Chadwick or 247 S St Bernard):<input id="lookup" type="text"></input></label>
           </p>
           <div id="results">
 
@@ -63,6 +63,7 @@
       <script type="text/javascript">
         $(document).ready(function(){
           app.results = [];
+          app.currentAddress = '';
 
           $("#lookup").autocomplete({
             source: function(request, response){ 
@@ -77,19 +78,27 @@
                 response(props);
               });
             },
-            minLength: 6
+            minLength: 4
           });
 
           $("#lookup").on("autocompleteselect", function(event, ui) {
             for(var i=0; i<app.results.length; i++) {
-              if(app.results[i].address === $('#lookup').val()) {
+              if(app.results[i].address === this.value) {
                 var data = app.results[i],
+                    percent = (data.dimPercent * 100).toFixed(1).replace('-','')
                     html = 'There are approximately <strong>' + data.count + '</strong> tax delinquent properties' +
                            ' nearby <strong>' + data.address + '</strong>,' + 
-                           ' which diminish the value of the property by <strong>' + data.dimValue + '%</strong>.';
+                           ' which diminish the value of the property by <strong>' + percent + '%</strong>.';
 
+                app.currentAddress = data.address;
                 $("#results").html(html);
               }
+            }
+          });
+
+          $("#lookup").on("keyup", function(event, ui){
+            if(event.which === 8 && this.value !== app.currentAddress) {
+              $("#results").html('');
             }
           });
         });
