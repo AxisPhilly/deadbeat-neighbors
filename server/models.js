@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
-    mongoose.connect('mongodb://localhost/planphilly-delinquency');
+    mongoose.connect('mongodb://localhost/planphilly-delinquency-2');
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
 // Property schema
 var Property = new Schema({
   address: {type: String, required: true},
-  dimValue: {type: Number, required: true},
+  dimPercent: {type: Number, required: true},
   count: {type: Number, required: true}
 });
 
