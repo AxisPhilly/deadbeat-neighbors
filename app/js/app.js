@@ -1,93 +1,95 @@
 var app = {};
 
-app.getClass = function(dimValue) {
-  var color = '';
-  switch(true) {
-    case (dimValue === 0):
-      color = "step-zero";
-      break;
-    case ((dimValue > 0) && (dimValue < 1000000)):
-      color = "step-one";
-      break;
-    case ((dimValue >= 1000000) && (dimValue < 10000000)):
-      color = "step-two";
-      break;
-    case ((dimValue >= 10000000) && (dimValue < 100000000)):
-      color = "step-three";
-      break;
-    case (dimValue >= 100000000):
-      color = "step-four";
-      break;
-    default:
-      color = "foo";
-      break;
-  }
+  app = {
+    getClass: function(dimValue) {
+      var color = '';
+      switch(true) {
+        case (dimValue === 0):
+          color = "step-zero";
+          break;
+        case ((dimValue > 0) && (dimValue < 1000000)):
+          color = "step-one";
+          break;
+        case ((dimValue >= 1000000) && (dimValue < 10000000)):
+          color = "step-two";
+          break;
+        case ((dimValue >= 10000000) && (dimValue < 100000000)):
+          color = "step-three";
+          break;
+        case (dimValue >= 100000000):
+          color = "step-four";
+          break;
+        default:
+          color = "foo";
+          break;
+      }
 
-  return color;
-};
+      return color;
+    },
 
-app.getDimValue = function(id, data) {
-  var dimValue;
+    getDimValue: function(id, data) {
+      var dimValue;
 
-  for(var i=0; i<data.length; i++) {
-    if(id === data[i].hood) {
-      dimValue = data[i].dimValue;
+      for(var i=0; i<data.length; i++) {
+        if(id === data[i].hood) {
+          dimValue = data[i].dimValue;
+        }
+      }
+
+      return dimValue;
+    },
+
+    showToolTip: function(hood, dimValue, x, y) {
+      contents = '<div id="neighborhood"><span>' + hood +'</span></div>' +
+                  '<div id="dim-value"><i>Diminished Value:</i> <span>' + dimValue + '</span></div>';
+
+      if ($('.hover').length) {
+          $('.hover').html(contents).show();
+        } else {
+          $('<div/>', {
+            'class': 'hover',
+            html: contents
+          }).appendTo('body').show();
+        }
+
+      var offset = $('body').offset();
+
+      $(document).mousemove(function(e){
+        var posX = e.pageX - 120;
+            posY = e.pageY - 90;
+
+        $('.hover').css({ left: posX, top: posY });
+      });
+    },
+
+  hideTooltip: function() {
+    $('.hover').hide();
+    $(document).unbind('mousemove');
+  },
+
+  legendItems: [
+    {
+      className: "step-zero",
+      range: "$0"
+    },
+    {
+      className: "step-one",
+      range: "< $1,000,000 "
+    },
+    {
+      className: "step-two",
+      range: "< $10,000,000"
+    },
+    {
+      className: "step-three",
+      range: "< $100,000,000"
+    },
+    {
+      className: "step-four",
+      range: ""
     }
-  }
-
-  return dimValue;
+  ]
 };
-
-app.showToolTip = function(hood, dimValue, x, y) {
-  contents = '<div id="neighborhood"><span>' + hood +'</span></div>' +
-              '<div id="dim-value"><i>Diminished Value:</i> <span>' + dimValue + '</span></div>';
-
-  if ($('.hover').length) {
-      $('.hover').html(contents).show();
-    } else {
-      $('<div/>', {
-        'class': 'hover',
-        html: contents
-      }).appendTo('body').show();
-    }
-
-  var offset = $('body').offset();
-
-  $(document).mousemove(function(e){
-    var posX = e.pageX - 120;
-        posY = e.pageY - 90;
-
-    $('.hover').css({ left: posX, top: posY });
-  });
-};
-
-app.hideTooltip = function() {
-  $('.hover').hide();
-  $(document).unbind('mousemove');
-};
-
-app.legendItems = [
-  {
-    className: "step-zero",
-    range: "$0"
-  },
-  {
-    className: "step-one",
-    range: "< $1,000,000 "
-  },
-  {
-    className: "step-two",
-    range: "< $10,000,000"
-  },
-  {
-    className: "step-three",
-    range: "< $100,000,000"
-  },
-  {
-    className: "step-four",
-    range: ""
-  }
-];
 
 //http://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-money-in-javascript
 Number.prototype.formatMoney = function(){
