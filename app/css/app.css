@@ -23,6 +23,14 @@ path:hover {
   border-bottom: solid 2px #FDD017;
 }
 
+#legend {
+  margin-top: 20px;
+}
+
+#legend text {
+  font-size: 12px;
+}
+
 #dim-value {
   padding: 5px;
 }

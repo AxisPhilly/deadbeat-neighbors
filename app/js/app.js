@@ -117,7 +117,7 @@ app.run = function() {
 
   app.legend.append("text")
       .text(function(d) { return d.range; })
-      .attr("x", function(d, i) { return i * 30; })
+      .attr("x", function(d, i) { return i * 100; })
       .attr("y", 35)
       .call(function() {
 
