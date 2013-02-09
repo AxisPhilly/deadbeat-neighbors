@@ -1,3 +1,6 @@
+// Create a json file which summarizes diminished cash value by neighborhood.
+// Used in conjunction with d3 map
+
 var csv = require('csv');
 var fs = require('fs');
 
