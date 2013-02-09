@@ -98,86 +98,88 @@ Number.prototype.formatMoney = function(){
   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 };
 
-// Legend
-app.legend = d3.select("#legend").append("svg")
-    .attr("height", 50)
-    .attr("width", 400)
-    .attr("viewBox", "0 0 400 50")
-    .attr("preserveAspectRatio", "xMidYMid")
-  .selectAll("g")
-    .data(app.legendItems)
-  .enter().append("g");
+app.run = function() {
+  // Legend
+  app.legend = d3.select("#legend").append("svg")
+      .attr("height", 50)
+      .attr("width", 400)
+      .attr("viewBox", "0 0 400 50")
+      .attr("preserveAspectRatio", "xMidYMid")
+    .selectAll("g")
+      .data(app.legendItems)
+    .enter().append("g");
 
-app.legend.append("rect")
-    .attr("height", 20)
-    .attr("width", 80)
-    .attr("x", function(d, i) { return i * 80; })
-    .attr("class", function(d) { return d.className; });
+  app.legend.append("rect")
+      .attr("height", 20)
+      .attr("width", 80)
+      .attr("x", function(d, i) { return i * 80; })
+      .attr("class", function(d) { return d.className; });
 
-app.legend.append("text")
-    .text(function(d) { return d.range; })
-    .attr("x", function(d, i) { return i * 30; })
-    .attr("y", 35)
-    .call(function() {
-
-      if(window.innerWidth < 400) {
-        d3.select("#legend svg").
-          attr("width", window.innerWidth - 20);
-      }
-    });
-
-
-d3.json("data/summary.json", function(error, data){
-
-  // Map Stuff
-  app.map = {};
-
-  d3.json("data/neighborhoods-topo.json", function(error, topology) {
-  
-  app.map.path = d3.geo.path()
-    .projection(d3.geo.mercator([-75.118,40.0020])
-    .scale(438635)
-    .translate([91727, 53480]));
-
-  app.map.svg = d3.select("#map").append("svg")
-    .attr("viewBox", "0 0 400 435")
-    .attr("preserveAspectRatio", "xMidYMid")
-    .attr("width", 400)
-    .attr("height", 435);
-
-  app.map.svg.selectAll("path")
-      .data(topojson.object(topology, topology.objects.neighborhoods).geometries)
-    .enter().append("path")
-      .attr("d", app.map.path)
-      .attr("class", function(d) {
-        var dimValue = app.getDimValue(d.id, data);
-        return app.getClass(dimValue);
-      })
-      .attr("id", function(d){
-        return d.id;
-      })
-      .on("mouseover", function(d){
-        var dimValue = app.getDimValue(d.id, data) || 0;
-
-        app.showToolTip(d.id, '$' + dimValue.formatMoney());
-      })
-      .on("mouseout", function(d){
-        app.hideTooltip();
-      })
-      .on("click", function(d) {
-        var dimValue = app.getDimValue(d.id, data) || 0;
-
-        app.showToolTip(d.id, '$' + dimValue.formatMoney());
-      })
-      .call(function(){
-
-        var ratio = 400 / 435;
+  app.legend.append("text")
+      .text(function(d) { return d.range; })
+      .attr("x", function(d, i) { return i * 30; })
+      .attr("y", 35)
+      .call(function() {
 
         if(window.innerWidth < 400) {
-          d3.select("#map svg")
-            .attr("width", window.innerWidth - 40)
-            .attr("height", (window.innerWidth - 40) / ratio);
+          d3.select("#legend svg").
+            attr("width", window.innerWidth - 20);
         }
       });
+
+
+  d3.json("data/summary.json", function(error, data){
+
+    // Map Stuff
+    app.map = {};
+
+    d3.json("data/neighborhoods-topo.json", function(error, topology) {
+    
+    app.map.path = d3.geo.path()
+      .projection(d3.geo.mercator([-75.118,40.0020])
+      .scale(438635)
+      .translate([91727, 53480]));
+
+    app.map.svg = d3.select("#map").append("svg")
+      .attr("viewBox", "0 0 400 435")
+      .attr("preserveAspectRatio", "xMidYMid")
+      .attr("width", 400)
+      .attr("height", 435);
+
+    app.map.svg.selectAll("path")
+        .data(topojson.object(topology, topology.objects.neighborhoods).geometries)
+      .enter().append("path")
+        .attr("d", app.map.path)
+        .attr("class", function(d) {
+          var dimValue = app.getDimValue(d.id, data);
+          return app.getClass(dimValue);
+        })
+        .attr("id", function(d){
+          return d.id;
+        })
+        .on("mouseover", function(d){
+          var dimValue = app.getDimValue(d.id, data) || 0;
+
+          app.showToolTip(d.id, '$' + dimValue.formatMoney());
+        })
+        .on("mouseout", function(d){
+          app.hideTooltip();
+        })
+        .on("click", function(d) {
+          var dimValue = app.getDimValue(d.id, data) || 0;
+
+          app.showToolTip(d.id, '$' + dimValue.formatMoney());
+        })
+        .call(function(){
+
+          var ratio = 400 / 435;
+
+          if(window.innerWidth < 400) {
+            d3.select("#map svg")
+              .attr("width", window.innerWidth - 40)
+              .attr("height", (window.innerWidth - 40) / ratio);
+          }
+        });
+    });
   });
-});
+};
