@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>PlanPhilly - Delinquency Project</title>
     <link rel="stylesheet" href="css/foundation.min.css" type="text/css">
+    <link rel="stylesheet" href="css/smoothness/jquery-ui-1.10.0.custom.min.css" type="text/css">
     <link rel="stylesheet" href="css/app.css" type="text/css">
   </head>
     <body>
@@ -51,9 +52,20 @@
       <script type="text/javascript" src="js/d3.min.js"></script>
       <script type="text/javascript" src="js/topojson.js"></script>
       <script type="text/javascript" src="js/app.js"></script>
+      <script type="text/javascript" src="http://localhost:3000/nowjs/now.js"></script>
       <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+      <script type="text/javascript" src="js/jquery-ui-1.10.0.custom.min.js"></script>
       <script type="text/javascript">
-          
+        $(document).ready(function(){
+          $("#lookup").autocomplete({
+            source: function(request, response){ 
+              now.search(request, 10, function(err, results) {
+                response(results);
+              });
+            },
+            minLength: 6
+          });
+        });
       </script>
   </body>
 </html>
