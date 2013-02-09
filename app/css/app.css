@@ -1,0 +1,39 @@
+path {
+  fill: #ccc;
+  stroke: #fff;
+  stroke-width: .5px;
+}
+
+path:hover {
+  fill: #FDD017;
+  cursor: pointer;
+}
+
+#neighborhood span {
+  border-bottom: solid 2px #FDD017;
+}
+
+.step-zero {
+  fill: #ccc;
+  color: #ccc;
+}
+
+.step-one {
+  color: #BDD7E7;
+  fill: #BDD7E7;
+}
+
+.step-two {
+  color: #6BAED6;
+  fill: #6BAED6;
+}
+
+.step-three {
+ color: #3182BD;
+  fill: #3182BD;
+}
+
+.step-four {
+  color: #08519C;
+  fill: #08519C;
+}
