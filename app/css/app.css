@@ -9,8 +9,26 @@ path:hover {
   cursor: pointer;
 }
 
+#neighborhood {
+  padding: 5px;
+  font-size: 16px;
+}
+
 #neighborhood span {
+  font-weight: bold;
   border-bottom: solid 2px #FDD017;
+}
+
+#dim-value {
+  padding: 5px;
+}
+
+.hover {
+  position: absolute;
+  width: 250px;
+  z-index: 20;
+  background: #fff;
+  border: 2px solid #333;
 }
 
 .step-zero {

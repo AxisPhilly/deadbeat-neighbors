@@ -38,6 +38,34 @@ app.getDimValue = function(id, data) {
   return dimValue;
 };
 
+app.showToolTip = function(hood, dimValue, x, y) {
+  contents = '<div id="neighborhood"><span>' + hood +'</span></div>' +
+              '<div id="dim-value"><i>Diminished Value:</i> <span>' + dimValue + '</span></div>';
+
+  if ($('.hover').length) {
+      $('.hover').html(contents).show();
+    } else {
+      $('<div/>', {
+        'class': 'hover',
+        html: contents
+      }).appendTo('body').show();
+    }
+
+  var offset = $('body').offset();
+
+  $(document).mousemove(function(e){
+    var posX = e.pageX - 120;
+        posY = e.pageY - 90;
+
+    $('.hover').css({ left: posX, top: posY });
+  });
+};
+
+app.hideTooltip = function() {
+  $('.hover').hide();
+  $(document).unbind('mousemove');
+};
+
 //http://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-money-in-javascript
 Number.prototype.formatMoney = function(){
   var c=2, d='.', t=',';
@@ -71,14 +99,21 @@ d3.json("data/summary.json", function(error, data){
         var dimValue = app.getDimValue(d.id, data);
         return app.getClass(dimValue);
       })
+      .attr("id", function(d){
+        return d.id;
+      })
       .on("mouseover", function(d){
-        d3.select('#neighborhood span').html(d.id);
-
         var dimValue = app.getDimValue(d.id, data) || 0;
-        d3.select('#dim-value span').html('$' + dimValue.formatMoney());
+
+        app.showToolTip(d.id, '$' + dimValue.formatMoney());
+      })
+      .on("mouseout", function(d){
+        app.hideTooltip();
       })
       .on("click", function(d) {
+        var dimValue = app.getDimValue(d.id, data) || 0;
 
+        app.showToolTip(d.id, '$' + dimValue.formatMoney());
       })
       .call(function(){
 
