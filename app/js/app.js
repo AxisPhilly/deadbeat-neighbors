@@ -55,8 +55,8 @@ var app = {};
       var offset = $('#map').offset();
 
       $(document).mousemove(function(e){
-        var posX = e.pageX - 290;
-            posY = e.pageY - 180;
+        var posX = e.pageX - offset.left - 100;
+            posY = e.pageY - offset.top - 100;
 
         $('.hover').css({ left: posX, top: posY });
       });
