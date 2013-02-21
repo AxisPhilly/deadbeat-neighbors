@@ -2,6 +2,10 @@ body p {
   font-size: 16px;
 }
 
+.row {
+  max-width: 750px;
+}
+
 path {
   fill: #ccc;
   stroke: #fff;
@@ -37,7 +41,13 @@ path:hover {
 
 #results {
   color: #555;
-  font-size: 18px;
+  font-size: 17px;
+}
+
+#results span {
+  background-color: papayaWhip;
+  display: block;
+  padding: 10px;
 }
 
 .info {
@@ -52,27 +62,44 @@ path:hover {
   border: 2px solid #333;
 }
 
+#legend text {
+  font-size: 10px;
+}
+
+#legend line {
+  stroke: #000;
+}
+
+#legend .last {
+  display: none;
+}
+
 .step-zero {
-  fill: #ccc;
-  color: #ccc;
+  fill: #FEE5D9;
+  color: #FEE5D9;
 }
 
 .step-one {
-  color: #BDD7E7;
-  fill: #BDD7E7;
+  color: #FCBBA1;
+  fill: #FCBBA1;
 }
 
 .step-two {
-  color: #6BAED6;
-  fill: #6BAED6;
+  color: #FC9272;
+  fill: #FC9272;
 }
 
 .step-three {
- color: #3182BD;
-  fill: #3182BD;
+ color: #FB6A4A;
+  fill: #FB6A4A;
 }
 
 .step-four {
-  color: #08519C;
-  fill: #08519C;
+  color: #DE2D26;
+  fill: #DE2D26;
+}
+
+.step-five {
+  color: #A50F15;
+  fill: #A50F15;
 }

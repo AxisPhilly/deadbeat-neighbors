@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>PlanPhilly - Delinquency Project</title>
+    <title>Delinquency Project</title>
     <link rel="stylesheet" href="css/foundation.min.css" type="text/css">
     <link rel="stylesheet" href="css/smoothness/jquery-ui-1.10.0.custom.min.css" type="text/css">
     <link rel="stylesheet" href="css/app.css" type="text/css">
@@ -11,31 +11,32 @@
     <body>
       <header class="row">
         <div class="twelve columns">
-          <h1>Tax-delinquent property impact</h1>
+          <h2>Deadbeats Damage Their Neighbors</h2>
         </div>
       </header>
 
+      <section class="row">
+        <p class="twelve columns">
+          Tax delinquent property has a profoundly negative effect on the market value of nearby homes, a new PlanPhilly / Inquirer analysis has found. In all, tax delinquency diminishes the overall tax base by a minimum of <strong>$9.5 billion</strong>. The average single family home in Philadelphia is worth 22.8 percent less, due to nearby delinquencies. That figure varies dramatically from house to house, depending on how many delinquent properties are within 500 feet.
+        </p>
+      </section>
+
       <section class="info row">
-        <div id="map-container" class="six columns">
+        <div id="map-container" class="seven columns">
           <div id="map"></div>
           <div id="legend"></div>
         </div>
 
-        <div id="dashboard" class="six columns">
+        <div id="dashboard" class="five columns">
           <p>
-            There are approximately 90,000 tax delinquent properties in Philadelphia.
-            These properties reduce the overall value of other properties, even if those
-            properties are not tax delinquent. This is called the "diminished value". 
+            Search for your property in the box below to see the effects of delinquency on your home's value. Or hover over the map to see delinquency's impact at the neighborhood level.
           </p>
           <p>
-            <i>
-              Hover over the map to see the effect of tax delinquent properties on the neighborhood level.
-              Search for your property in the box below to see the impact of tax delinquent properties on your own property.
-              Note: If your property is not found, it couldn't be included in the analysis--but it may still be impacted.
+            <i>Note: this analysis only covers single family homes. Commercial properties and multi-unit residential properties are not included.
             </i>
           </p>
           <p>
-            <label><strong>Search for a property</strong>:
+            <label><strong>Search for your property</strong>:
               <input id="lookup" type="text" placeholder="ex: 1000 S Chadwick or 247 S St Bernard"></input>
             </label>
           </p>
@@ -47,19 +48,12 @@
 
       <footer class="row">
         <div class="twelve columns">
-          <hr>
-          <p>
-            <cite>
-              Reporting by Patrick Kerkstra (PlanPhilly). Analysis by Kevin Gillen (Econsult). Application by <a href="http://www.axisphilly.org/author/casey">Casey Thomas</a> (AxisPhilly). 
-              <a href="http://www.azavea.com/about-us/giving-back/azavea-commons/">Philadelphia Neighborhoods Polygons</a>: Azavea Incorporated, licensed under the <a href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 United States License</a>.
-            </cite>
-          </p>
         </div>
       </footer>
       <script type="text/javascript" src="js/d3.min.js"></script>
       <script type="text/javascript" src="js/topojson.js"></script>
       <script type="text/javascript" src="js/app.js"></script>
-      <script type="text/javascript" src="http://localhost:3000/nowjs/now.js"></script>
+      <script type="text/javascript" src="http://salty-lowlands-7622.herokuapp.com/nowjs/now.js"></script>
       <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
       <script type="text/javascript" src="js/jquery-ui-1.10.0.custom.min.js"></script>
       <script type="text/javascript">
@@ -90,11 +84,11 @@
                 var data = app.results[i],
                     percent = (data.dimPercent * 100).toFixed(1).replace('-','')
                     html = 'There are approximately <strong>' + data.count + '</strong> tax delinquent properties' +
-                           ' near <strong>' + data.address + '</strong>,' + 
+                           ' within 500 feet of <strong>' + data.address + '</strong>,' + 
                            ' which diminish the value of the property by <strong>' + percent + '%</strong>.';
 
                 app.currentAddress = data.address;
-                $("#results").html(html);
+                $("#results").html('<span>' + html + '</span>');
               }
             }
           });

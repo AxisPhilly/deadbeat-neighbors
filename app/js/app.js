@@ -10,17 +10,20 @@ var app = {};
         case ((dimValue > 0) && (dimValue < 1000000)):
           color = "step-one";
           break;
-        case ((dimValue >= 1000000) && (dimValue < 10000000)):
+        case ((dimValue >= 1000000) && (dimValue < 50000000)):
           color = "step-two";
           break;
-        case ((dimValue >= 10000000) && (dimValue < 100000000)):
+        case ((dimValue >= 50000000) && (dimValue < 100000000)):
           color = "step-three";
           break;
-        case (dimValue >= 100000000):
+        case ((dimValue >= 100000000) && (dimValue < 200000000)):
           color = "step-four";
           break;
+        case (dimValue >= 200000000):
+          color = "step-five";
+          break;
         default:
-          color = "foo";
+          color = "step-zero";
           break;
       }
 
@@ -70,32 +73,35 @@ var app = {};
   legendItems: [
     {
       className: "step-zero",
-      range: "$0"
+      range: "",
+      x: 0
     },
     {
       className: "step-one",
-      range: "< $1,000,000 "
+      range: "$0",
+      x: 30
     },
     {
       className: "step-two",
-      range: "< $10,000,000"
+      range: "$1 M",
+      x: 112
     },
     {
       className: "step-three",
-      range: "< $100,000,000"
+      range: "$50 M",
+      x: 178
     },
     {
       className: "step-four",
-      range: ""
+      range: "$100 M",
+      x: 240
+    },
+    {
+      className: "step-five",
+      range: "$200 M",
+      x: 310
     }
   ]
-};
-
-//http://stackoverflow.com/questions/149055/how-can-i-format-numbers-as-money-in-javascript
-Number.prototype.formatMoney = function(){
-  var c=2, d='.', t=',';
-  var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "," : d, t = t == undefined ? "." : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
-  return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 };
 
 app.run = function() {
@@ -110,15 +116,22 @@ app.run = function() {
     .enter().append("g");
 
   app.legend.append("rect")
-      .attr("height", 20)
-      .attr("width", 80)
-      .attr("x", function(d, i) { return i * 80; })
+      .attr("height", 10)
+      .attr("width", 63)
+      .attr("x", function(d, i) { return i * 65 + 1; })
       .attr("class", function(d) { return d.className; });
+
+  app.legend.append("line")
+      .attr("x1", function(d, i) { return (i + 1) * 65; })
+      .attr("y2", 0)
+      .attr("x2", function(d, i) { return (i + 1) * 65; })
+      .attr("y2", 15)
+      .attr("class", function(d, i) { if(i === 5) return 'last'; });
 
   app.legend.append("text")
       .text(function(d) { return d.range; })
-      .attr("x", function(d, i) { return i * 100; })
-      .attr("y", 35)
+      .attr("x", function(d, i) { return d.x; })
+      .attr("y", 25)
       .call(function() {
 
         if(window.innerWidth < 400) {
@@ -158,17 +171,25 @@ app.run = function() {
           return d.id;
         })
         .on("mouseover", function(d){
-          var dimValue = app.getDimValue(d.id, data) || 0;
+          var dimValue = app.getDimValue(d.id, data) || 0,
+              fDimValue = '$0';
 
-          app.showToolTip(d.id, '$' + dimValue.formatMoney());
+          if(dimValue && dimValue < 1000000) {
+            fDimValue = '< $1 Million';
+          }  else if (dimValue >= 1000000) {
+            fDimValue = '$' + (dimValue / 1000000).toFixed(0) + ' Million';
+          }
+
+          app.showToolTip(d.id, fDimValue);
         })
         .on("mouseout", function(d){
           app.hideTooltip();
         })
         .on("click", function(d) {
-          var dimValue = app.getDimValue(d.id, data) || 0;
+          var dimValue = app.getDimValue(d.id, data) || 0,
+              fDimValue = '$' + dimValue / 1000000 + ' Million';
 
-          app.showToolTip(d.id, '$' + dimValue.formatMoney());
+          app.showToolTip(d.id, fDimValue);
         })
         .call(function(){
 
