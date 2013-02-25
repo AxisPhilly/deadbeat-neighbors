@@ -66,6 +66,10 @@ path:hover {
   font-size: 10px;
 }
 
+#legend text.title {
+  font-size: 12px;
+}
+
 #legend line {
   stroke: #000;
 }

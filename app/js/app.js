@@ -118,20 +118,21 @@ app.run = function() {
   app.legend.append("rect")
       .attr("height", 10)
       .attr("width", 63)
+      .attr("y", 20)
       .attr("x", function(d, i) { return i * 65 + 1; })
       .attr("class", function(d) { return d.className; });
 
   app.legend.append("line")
       .attr("x1", function(d, i) { return (i + 1) * 65; })
-      .attr("y2", 0)
+      .attr("y1", 20)
       .attr("x2", function(d, i) { return (i + 1) * 65; })
-      .attr("y2", 15)
+      .attr("y2", 35)
       .attr("class", function(d, i) { if(i === 5) return 'last'; });
 
   app.legend.append("text")
       .text(function(d) { return d.range; })
       .attr("x", function(d, i) { return d.x; })
-      .attr("y", 25)
+      .attr("y", 45)
       .call(function() {
 
         if(window.innerWidth < 400) {
@@ -140,6 +141,10 @@ app.run = function() {
         }
       });
 
+  d3.select("#legend svg").append("text")
+      .text("Aggregate Diminished Value")
+      .attr("y", 10)
+      .attr("class", "title");
 
   d3.json("data/summary.json", function(error, data){
 
