@@ -78,6 +78,10 @@ path:hover {
   display: none;
 }
 
+footer {
+  margin-bottom: 20px !important;
+}
+
 .step-zero {
   fill: #FEE5D9;
   color: #FEE5D9;
