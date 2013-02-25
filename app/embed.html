@@ -27,99 +27,99 @@
 
     </script>
   </head>
-    <body>
-      <header class="row">
-        <div class="twelve columns">
-          <h2>Deadbeats Damage Their Neighbors</h2>
-        </div>
-      </header>
+  <body>
+    <header class="row">
+      <div class="twelve columns">
+        <h2>Deadbeats Damage Their Neighbors</h2>
+      </div>
+    </header>
 
-      <section class="row">
-        <p class="twelve columns">
-          Tax delinquent property has a profoundly negative effect on the market value of nearby homes, a new PlanPhilly / Inquirer analysis has found. In all, tax delinquency diminishes the overall tax base by a minimum of <strong>$9.5 billion</strong>. The average single family home in Philadelphia is worth 22.8 percent less, due to nearby delinquencies. That figure varies dramatically from house to house, depending on how many delinquent properties are within 500 feet.
+    <section class="row">
+      <p class="twelve columns">
+        Tax delinquent property has a profoundly negative effect on the market value of nearby homes, a new PlanPhilly / Inquirer analysis has found. In all, tax delinquency diminishes the overall tax base by a minimum of <strong>$9.5 billion</strong>. The average single family home in Philadelphia is worth 22.8 percent less, due to nearby delinquencies. That figure varies dramatically from house to house, depending on how many delinquent properties are within 500 feet.
+      </p>
+    </section>
+
+    <section class="info row">
+      <div id="map-container" class="seven columns">
+        <div id="map"></div>
+        <div id="legend"></div>
+      </div>
+
+      <div id="dashboard" class="five columns">
+        <p>
+          Search for your property in the box below to see the effects of delinquency on your home's value. Or hover over the map to see delinquency's impact at the neighborhood level.
         </p>
-      </section>
+        <p>
+          <i>Note: this analysis only covers single family homes. Commercial properties and multi-unit residential properties are not included.
+          </i>
+        </p>
+        <p>
+          <label><strong>Search for your property</strong>:
+            <input id="lookup" type="text" placeholder="ex: 1000 S Chadwick or 247 S St Bernard"></input>
+          </label>
+        </p>
+        <div id="results">
 
-      <section class="info row">
-        <div id="map-container" class="seven columns">
-          <div id="map"></div>
-          <div id="legend"></div>
         </div>
+      </div>
+    </section>
 
-        <div id="dashboard" class="five columns">
-          <p>
-            Search for your property in the box below to see the effects of delinquency on your home's value. Or hover over the map to see delinquency's impact at the neighborhood level.
-          </p>
-          <p>
-            <i>Note: this analysis only covers single family homes. Commercial properties and multi-unit residential properties are not included.
-            </i>
-          </p>
-          <p>
-            <label><strong>Search for your property</strong>:
-              <input id="lookup" type="text" placeholder="ex: 1000 S Chadwick or 247 S St Bernard"></input>
-            </label>
-          </p>
-          <div id="results">
+    <footer class="row">
+      <div class="twelve columns">
+        <hr>
+        <cite>Source: City of Philadelphia; Neighborhood Data: <a href="http://www.azavea.com/about-us/giving-back/azavea-commons/">Azavea (<a href="http://creativecommons.org/licenses/by/3.0/us/">CC BY 3.0 US</a>)</a>; Reporting: Patrick Kerkstra (<a href="http://www.planphilly.org">PlanPhilly</a>); Analysis: Kevin Gillen (Fels School of Government); Application: Casey Thomas (<a href="http://www.axisphilly.org">AxisPhilly</a>); </cite>
+      </div>
+    </footer>
+    <script type="text/javascript" src="js/d3.min.js"></script>
+    <script type="text/javascript" src="js/topojson.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="http://salty-lowlands-7622.herokuapp.com/nowjs/now.js"></script>
+    <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.10.0.custom.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        app.run();
+        app.results = [];
+        app.currentAddress = '';
 
-          </div>
-        </div>
-      </section>
-
-      <footer class="row">
-        <div class="twelve columns">
-          <hr>
-          <cite>Source: City of Philadelphia; Neighborhood Data: <a href="http://www.azavea.com/about-us/giving-back/azavea-commons/">Azavea (<a href="http://creativecommons.org/licenses/by/3.0/us/">CC BY 3.0 US</a>)</a>; Reporting: Patrick Kerkstra (<a href="http://www.planphilly.org">PlanPhilly</a>); Analysis: Kevin Gillen (Fels School of Government); Application: Casey Thomas (<a href="http://www.axisphilly.org">AxisPhilly</a>); </cite>
-        </div>
-      </footer>
-      <script type="text/javascript" src="js/d3.min.js"></script>
-      <script type="text/javascript" src="js/topojson.js"></script>
-      <script type="text/javascript" src="js/app.js"></script>
-      <script type="text/javascript" src="http://salty-lowlands-7622.herokuapp.com/nowjs/now.js"></script>
-      <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
-      <script type="text/javascript" src="js/jquery-ui-1.10.0.custom.min.js"></script>
-      <script type="text/javascript">
-        $(document).ready(function(){
-          app.run();
-          app.results = [];
-          app.currentAddress = '';
-
-          $("#lookup").autocomplete({
-            source: function(request, response){ 
-              now.search(request, 10, function(err, results) {
-                var props = [];
-                app.results = results;
-                
-                for(var i=0; i<results.length; i++) {
-                  props.push(results[i].address);
-                }
-
-                response(props);
-              });
-            },
-            minLength: 4
-          });
-
-          $("#lookup").on("autocompleteselect", function(event, ui) {
-            for(var i=0; i<app.results.length; i++) {
-              if(app.results[i].address === this.value) {
-                var data = app.results[i],
-                    percent = (data.dimPercent * 100).toFixed(1).replace('-','')
-                    html = 'There are approximately <strong>' + data.count + '</strong> tax delinquent properties' +
-                           ' within 500 feet of <strong>' + data.address + '</strong>,' + 
-                           ' which diminish the value of the property by <strong>' + percent + '%</strong>.';
-
-                app.currentAddress = data.address;
-                $("#results").html('<span>' + html + '</span>');
+        $("#lookup").autocomplete({
+          source: function(request, response){ 
+            now.search(request, 10, function(err, results) {
+              var props = [];
+              app.results = results;
+              
+              for(var i=0; i<results.length; i++) {
+                props.push(results[i].address);
               }
-            }
-          });
 
-          $("#lookup").on("keyup", function(event, ui){
-            if(event.which === 8 && this.value !== app.currentAddress) {
-              $("#results").html('');
-            }
-          });
+              response(props);
+            });
+          },
+          minLength: 4
         });
-      </script>
+
+        $("#lookup").on("autocompleteselect", function(event, ui) {
+          for(var i=0; i<app.results.length; i++) {
+            if(app.results[i].address === this.value) {
+              var data = app.results[i],
+                  percent = (data.dimPercent * 100).toFixed(1).replace('-','')
+                  html = 'There are approximately <strong>' + data.count + '</strong> tax delinquent properties' +
+                         ' within 500 feet of <strong>' + data.address + '</strong>,' + 
+                         ' which diminish the value of the property by <strong>' + percent + '%</strong>.';
+
+              app.currentAddress = data.address;
+              $("#results").html('<span>' + html + '</span>');
+            }
+          }
+        });
+
+        $("#lookup").on("keyup", function(event, ui){
+          if(event.which === 8 && this.value !== app.currentAddress) {
+            $("#results").html('');
+          }
+        });
+      });
+    </script>
   </body>
 </html>
