@@ -1,8 +1,8 @@
-body p {
+#embed p {
   font-size: 16px;
 }
 
-.row {
+#embed .row {
   max-width: 750px;
 }
 
@@ -19,7 +19,7 @@ path:hover {
 
 #neighborhood {
   padding: 5px;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 #neighborhood span {
@@ -28,11 +28,16 @@ path:hover {
 }
 
 #legend {
+  font-size: 12px;
   margin-top: 20px;
 }
 
 #legend text {
   font-size: 12px;
+}
+
+#lookup.full {
+  font-size: 20px;
 }
 
 #dim-value {
@@ -56,18 +61,18 @@ path:hover {
 
 .hover {
   position: absolute;
-  width: 250px;
+  width: 300px;
   z-index: 20;
   background: #fff;
   border: 2px solid #333;
 }
 
 #legend text {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 #legend text.title {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 #legend line {
