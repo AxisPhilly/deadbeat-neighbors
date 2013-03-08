@@ -27,7 +27,7 @@
 
     </script>
   </head>
-  <body>
+  <body id="embed">
     <header class="row">
       <div class="twelve columns">
         <h2>Deadbeats Damage Their Neighbors</h2>
@@ -93,11 +93,17 @@
                 props.push(results[i].address);
               }
 
+              if(props.length === 0) {  noResults(); }
+
               response(props);
             });
           },
           minLength: 4
         });
+
+        function noResults() {
+          $("#results").html('<span>No results for that address.</span>');
+        }
 
         $("#lookup").on("autocompleteselect", function(event, ui) {
           for(var i=0; i<app.results.length; i++) {
