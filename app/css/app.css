@@ -19,7 +19,7 @@ path:hover {
 }
 
 #neighborhood {
-  padding: 2px 5px;
+  padding: 2px 5px 4px 5px;
   font-size: 20px;
 }
 
@@ -42,7 +42,7 @@ path:hover {
 }
 
 #dim-value {
-  padding: 2px 5px;
+  padding: 4px 5px;
 }
 
 #results {
