@@ -86,7 +86,6 @@
         $("#lookup").autocomplete({
           source: function(request, response){ 
             $("#lookup").addClass("ui-autocomplete-loading");
-            console.log('foo');
             now.search(request, 10, function(err, results) {
               var props = [];
               app.results = results;
