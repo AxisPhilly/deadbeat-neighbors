@@ -117,3 +117,25 @@ footer {
   color: #A50F15;
   fill: #A50F15;
 }
+
+input[type="text"] {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+input[type="text"].ui-autocomplete-loading {
+  background: white url('img/ui-anim_basic_16x16.gif') right no-repeat;
+}
+
+.ui-autocomplete {
+  max-height: 100px;
+  overflow-y: auto;
+  /* prevent horizontal scrollbar */
+  overflow-x: hidden;
+}
+
+html .ui-autocomplete {
+  height: 100px;
+}

@@ -136,8 +136,8 @@
           </i>
         </p>
         <p>
-          <label><strong>Search for your property</strong>:
-            <input id="lookup" class="full" type="text" placeholder="ex: 1000 S Chadwick or 247 S St Bernard"></input>
+          <label><strong>To search, begin typing in the address of a single family home and select the address from the options that appear beneath the search box</strong>:
+            <input id="lookup" type="text" placeholder="ex: 1000 S Chadwick or 247 S St Bernard"></input>
           </label>
         </p>
         <div id="results">
@@ -167,6 +167,8 @@
 
         $("#lookup").autocomplete({
           source: function(request, response){ 
+            $("#lookup").addClass("ui-autocomplete-loading");
+            console.log('foo');
             now.search(request, 10, function(err, results) {
               var props = [];
               app.results = results;
@@ -175,21 +177,36 @@
                 props.push(results[i].address);
               }
 
-              if(props.length === 0) {  noResults(); }
+              if(props.length === 0) { app.noResults(); }
 
               response(props);
             });
           },
-          minLength: 4
+          minLength: 4,
+          select: function(event, ui) {
+            app.selectAddress(ui.item.value);
+          }
         });
 
-        function noResults() {
+        $("#lookup").on("autocompleteselect", function(event, ui) {
+          app.selectAddress(this.value);
+        });
+
+        $("#lookup").on("keyup", function(event, ui){
+          if(event.which === 8 && this.value !== app.currentAddress) {
+            $("#results").html('');
+          }
+        });
+
+        app.noResults = function() {
           $("#results").html('<span>No results for that address.</span>');
         }
 
-        $("#lookup").on("autocompleteselect", function(event, ui) {
+        app.selectAddress = function(address) {
+           $("#lookup").removeClass("ui-autocomplete-loading");
+
           for(var i=0; i<app.results.length; i++) {
-            if(app.results[i].address === this.value) {
+            if(app.results[i].address === address) {
               var data = app.results[i],
                   percent = (data.dimPercent * 100).toFixed(1).replace('-','')
                   html = 'There are approximately <strong>' + data.count + '</strong> tax delinquent properties' +
@@ -200,16 +217,10 @@
               $("#results").html('<span>' + html + '</span>');
             }
           }
-        });
+        }
 
-        $("#lookup").on("keyup", function(event, ui){
-          if(event.which === 8 && this.value !== app.currentAddress) {
-            $("#results").html('');
-          }
-        });
       });
     </script>
-
 
   <!-- Site Footer -->
   <footer>
